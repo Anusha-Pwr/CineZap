@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import { fetchDataFromApi } from "../utils/api";
 
 const useFetch = (url) => {
-  const [data, setData] = useState();
+  const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState();
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     async function fetchRequest() {
