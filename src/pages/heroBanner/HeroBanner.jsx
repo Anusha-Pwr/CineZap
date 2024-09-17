@@ -4,6 +4,7 @@ import useFetch from "../../hooks/useFetch";
 import { useSelector } from "react-redux";
 import Image from "../../components/lazyLoadImage/Image";
 import ContentWrapper from "../../components/contentWrapper/ContentWrapper";
+import "./style.scss";
 
 const HeroBanner = () => {
   const [background, setBackground] = useState("");
@@ -30,9 +31,13 @@ const HeroBanner = () => {
 
   return (
     <div className="heroBanner">
-      <div className="backdrop-img">
-        <Image src={background} />
-      </div>
+      {data && !loading && (
+        <div className="backdrop-img">
+          <Image src={background} />
+        </div>
+      )}
+
+      <div className="opacity-layer"></div>
 
       <ContentWrapper>
         <div className="heroBannerContent">
