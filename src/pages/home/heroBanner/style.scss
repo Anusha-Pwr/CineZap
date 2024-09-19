@@ -1,4 +1,4 @@
-@import "../../mixins.scss";
+@import "../../../mixins.scss";
 
 .heroBanner {
     width: 100%;
@@ -41,6 +41,12 @@
             #04152d 79.17%
         );
     }
+
+    .contentWrapper {
+        display: flex;
+        justify-content: center;
+    }
+    
     .heroBannerContent {
         display: flex;
         flex-direction: column;
