@@ -1,25 +1,61 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import ContentWrapper from "../contentWrapper/ContentWrapper";
-import logo from "../../assets/Designer.png";
+import logo from "../../assets/cinezap.png";
 import { HiOutlineSearch } from "react-icons/hi";
 import "./style.scss";
 import { SlMenu } from "react-icons/sl";
 import { VscChromeClose } from "react-icons/vsc";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Header = () => {
-  const [mobileMenu, setMobileMenu] = useState(false); // for toggling the icon from close to menu icon and vice versa
+  const [mobileMenu, setMobileMenu] = useState(false); // for toggling the icon between 'close' and 'menu', and displaying menu items in mobile view
   const [showSearch, setShowSearch] = useState(false); // toggling the search bar
   const [query, setQuery] = useState("");
+  const [show, setShow] = useState("top");
+  const [lastScrollY, setLastScrollY] = useState(0);
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // for resetting the scroll if we navigate to a different page
+  }, [location]);
+
+  const controlHeaderDisplay = useCallback(() => {
+    // function to add different classes to 'header' based on user's scroll position
+    const currentScrollY = window.scrollY;
+
+    if (currentScrollY > 200) {
+      if (currentScrollY > lastScrollY && !mobileMenu) {
+        setShow("hide");
+      } else {
+        setShow("show");
+      }
+    } else {
+      setShow("top");
+    }
+
+    setLastScrollY(currentScrollY);
+  }, [lastScrollY, mobileMenu]);
+
+  useEffect(() => {
+    // for adding and removing the 'scroll' event listener
+    window.addEventListener("scroll", controlHeaderDisplay);
+
+    return () => {
+      // clean-up function remove event listener when component unmounts from the DOM
+      window.removeEventListener("scroll", controlHeaderDisplay);
+    };
+  }, [controlHeaderDisplay]);
 
   const navigate = useNavigate();
 
   function openSearch() {
+    // to display search bar
     setMobileMenu(false);
     setShowSearch(true);
   }
 
   function openMobileMenu() {
+    // to display mobile menu items
     setMobileMenu(true);
     setShowSearch(false);
   }
@@ -27,18 +63,36 @@ const Header = () => {
   function searchQueryHandler(e) {
     if (e.key === "Enter" && query.length > 0) {
       navigate(`/search/${query}`);
+      setTimeout(() => {
+        setShowSearch(false);
+      }, 1000);
     }
   }
 
+  function navigationHandler(mediaType) {
+    // to navigate the user to different pages
+    if (mediaType === "movie") {
+      navigate("/explore/movie");
+    } else {
+      navigate("/explore/tv");
+    }
+
+    setMobileMenu(false);
+  }
+
   return (
-    <header className={`header ${mobileMenu ? "mobileView" : ""}`}>
+    <header className={`header ${mobileMenu ? "mobileView" : ""} ${show}`}>
       <ContentWrapper>
         <div className="logo">
           <img src={logo} alt="" />
         </div>
         <ul className="menuItems">
-          <li className="menuItem">Movies</li>
-          <li className="menuItem">TV Shows</li>
+          <li className="menuItem" onClick={() => navigationHandler("movie")}>
+            Movies
+          </li>
+          <li className="menuItem" onClick={() => navigationHandler("tv")}>
+            TV Shows
+          </li>
           <li className="menuItem" onClick={openSearch}>
             <HiOutlineSearch />
           </li>
