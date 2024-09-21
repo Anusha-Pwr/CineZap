@@ -68,7 +68,14 @@ const Carousel = ({ data, loading }) => {
             })}
           </div>
         ) : (
-          <div className="loadingSkeleton">{skeletonItemHandler()}</div>
+          <div className="loadingSkeleton">
+            {skeletonItemHandler()}
+            {skeletonItemHandler()}
+            {skeletonItemHandler()}
+            {skeletonItemHandler()}
+            {skeletonItemHandler()}
+            {skeletonItemHandler()}
+          </div>
         )}
       </ContentWrapper>
     </div>
