@@ -1,8 +1,9 @@
 @import "../../mixins.scss";
 
 .carousel {
-   padding: 20px 0;
-   overflow: hidden;
+  padding: 20px 0;
+  margin-bottom: 50px;
+  overflow: hidden;
   .contentWrapper {
     position: relative;
   }
@@ -20,7 +21,7 @@
       opacity: 1;
     }
     @include md {
-        display: block;
+      display: block;
     }
   }
 
@@ -119,18 +120,21 @@
           padding: 2px;
         }
         .genres {
-            position: absolute;
-            right: 0;
-            bottom: 0;
-            display: none;
-            @include md {
-                max-width: 150px;
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: end;
-                gap: 5px;
-                padding: 3px 5px;
-            }
+          position: absolute;
+          right: 0;
+          bottom: 0;
+          display: none;
+          @include md {
+            max-width: 115px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: end;
+            gap: 5px;
+            padding: 3px 5px;
+          }
+          @include lg {
+            max-width: 150px;
+          }
         }
       }
 

@@ -7,9 +7,9 @@ const Genres = ({ data }) => {
 
   return (
     <div className="genres">
-      {data?.map((id) => {
+      {data?.map((id, index) => {
         if (!genres[id]?.name) return;
-        return <div className="genre">{genres[id]?.name}</div>;
+        return <div className="genre" key={index}>{genres[id]?.name}</div>;
       })}
     </div>
   );

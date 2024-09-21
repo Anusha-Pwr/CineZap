@@ -13,9 +13,11 @@ import Image from "../lazyLoadImage/Image";
 import { useSelector } from "react-redux";
 import CircleRating from "../circleRating/CircleRating";
 import Genres from "../genres/Genres";
+import { useNavigate } from "react-router-dom";
 
-const Carousel = ({ data, loading }) => {
+const Carousel = ({ data, loading, endPoint }) => {
   const url = useSelector((state) => state.home.url);
+  const navigate = useNavigate();
 
   const carouselRef = useRef();
 
@@ -24,13 +26,17 @@ const Carousel = ({ data, loading }) => {
 
     const scrollAmount =
       direction === "right"
-        ? container.scrollLeft + (container.offsetWidth+20)
-        : container.scrollLeft - (container.offsetWidth+20);
+        ? container.scrollLeft + (container.offsetWidth + 20)
+        : container.scrollLeft - (container.offsetWidth + 20);
 
     container.scrollTo({
       left: scrollAmount,
       behavior: "smooth",
     });
+  }
+
+  function navigationHandler(item) {
+    navigate(`/${item.media_type ?? endPoint}/${item.id}`);
   }
 
   function skeletonItemHandler() {
@@ -64,7 +70,7 @@ const Carousel = ({ data, loading }) => {
                 ? url.poster + item.poster_path
                 : posterFallBack;
 
-              const date = new Date(item.release_date);
+              const date = new Date(item.release_date ?? item.first_air_date);
               const formattedDate = date.toLocaleDateString("en-US", {
                 year: "numeric",
                 month: "short",
@@ -72,7 +78,11 @@ const Carousel = ({ data, loading }) => {
               });
 
               return (
-                <div key={item.id} className="carouselItem">
+                <div
+                  key={item.id}
+                  className="carouselItem"
+                  onClick={() => navigationHandler(item)}
+                >
                   <div className="posterBlock">
                     <Image src={posterUrl} />
                     <CircleRating rating={item.vote_average.toFixed(1)} />
