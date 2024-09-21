@@ -8,15 +8,19 @@
   }
   .arrow {
     font-size: 30px;
-    color: black;
+    color: darkgray;
     cursor: pointer;
     position: absolute;
-    opacity: 0.5;
+    opacity: 0.8;
     z-index: 1;
     top: 44%;
     transform: translateY(-50%);
+    display: none;
     &:hover {
-      opacity: 0.8;
+      opacity: 1;
+    }
+    @include md {
+        display: block;
     }
   }
 

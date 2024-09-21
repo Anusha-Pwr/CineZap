@@ -1,4 +1,5 @@
 import React from "react";
+import { useRef } from "react";
 import "./style.scss";
 import ContentWrapper from "../contentWrapper/ContentWrapper";
 import {
@@ -15,6 +16,22 @@ import Genres from "../genres/Genres";
 
 const Carousel = ({ data, loading }) => {
   const url = useSelector((state) => state.home.url);
+
+  const carouselRef = useRef();
+
+  function scrollHandler(direction) {
+    const container = carouselRef.current;
+
+    const scrollAmount =
+      direction === "right"
+        ? container.scrollLeft + (container.offsetWidth+20)
+        : container.scrollLeft - (container.offsetWidth+20);
+
+    container.scrollTo({
+      left: scrollAmount,
+      behavior: "smooth",
+    });
+  }
 
   function skeletonItemHandler() {
     return (
@@ -33,15 +50,15 @@ const Carousel = ({ data, loading }) => {
       <ContentWrapper>
         <BsFillArrowLeftCircleFill
           className="carouselLeftNav arrow"
-          onClick={() => navigation("left")}
+          onClick={() => scrollHandler("left")}
         />
         <BsFillArrowRightCircleFill
           className="carouselRightNav arrow"
-          onClick={() => navigation("right")}
+          onClick={() => scrollHandler("right")}
         />
 
         {!loading ? (
-          <div className="carouselItems">
+          <div className="carouselItems" ref={carouselRef}>
             {data?.map((item) => {
               const posterUrl = item.poster_path
                 ? url.poster + item.poster_path
