@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import ContentWrapper from "../../../components/contentWrapper/ContentWrapper";
 import posterFallBack from "../../../assets/no-poster.png";
 import { formatDate } from "../../../utils/dateUtils";
+import { toHoursMinutes } from "../../../utils/timeUtils";
 
 import "./style.scss";
 import Genres from "../../../components/genres/Genres";
@@ -85,7 +86,7 @@ const DetailsBanner = () => {
                     {data.runtime && (
                       <div className="infoItem">
                         <span>Runtime: </span>
-                        <span>{data.runtime}</span>
+                        <span>{toHoursMinutes(data.runtime)}</span>
                       </div>
                     )}
                   </div>
