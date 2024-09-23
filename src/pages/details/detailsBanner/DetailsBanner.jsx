@@ -13,7 +13,7 @@ import Genres from "../../../components/genres/Genres";
 import CircleRating from "../../../components/circleRating/CircleRating";
 import { PlayIcon } from "../PlayIcon";
 
-const DetailsBanner = () => {
+const DetailsBanner = ({ videos, crew }) => {
   const { mediaType, id } = useParams();
 
   const { loading, data } = useFetch(`/${mediaType}/${id}`);
@@ -21,6 +21,15 @@ const DetailsBanner = () => {
   const url = useSelector((state) => state.home.url);
 
   const genres = data?.genres.map((entry) => entry.id);
+
+  const directors = crew?.filter((entry) => entry.job === "Director");
+
+  const writers = crew?.filter(
+    (entry) =>
+      entry.job === "Screenplay" ||
+      entry.job === "Story" ||
+      entry.job === "Writer"
+  );
 
   return (
     <div className="detailsBanner">
@@ -50,7 +59,8 @@ const DetailsBanner = () => {
 
                 <div className="right">
                   <div className="title">
-                    {data.title || data.name} ({formatDate(data.release_date, 'year')})
+                    {data.title || data.name} (
+                    {formatDate(data.release_date, "year")})
                   </div>
 
                   <div className="subTitle">{data.tagline}</div>
@@ -73,23 +83,61 @@ const DetailsBanner = () => {
                   <div className="info">
                     {data.status && (
                       <div className="infoItem">
-                        <span>Status: </span>
-                        <span>{data.status}</span>
+                        <span className="text bold">Status: </span>
+                        <span className="text">{data.status}</span>
                       </div>
                     )}
                     {data.release_date && (
                       <div className="infoItem">
-                        <span>Release Date: </span>
-                        <span>{formatDate(data.release_date, 'short-date')}</span>
+                        <span className="text bold">Release Date: </span>
+                        <span className="text">
+                          {formatDate(data.release_date, "short-date")}
+                        </span>
                       </div>
                     )}
                     {data.runtime && (
                       <div className="infoItem">
-                        <span>Runtime: </span>
-                        <span>{toHoursMinutes(data.runtime)}</span>
+                        <span className="text bold">Runtime: </span>
+                        <span className="text">
+                          {toHoursMinutes(data.runtime)}
+                        </span>
                       </div>
                     )}
                   </div>
+
+                  {directors.length > 0 && (
+                    <div className="info">
+                      <span className="text bold">Director: </span>
+                      {directors.map((item, index) => (
+                        <span className="text" key={index}>
+                          {item.name} {index !== directors.length - 1 && ", "}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  {writers.length > 0 && (
+                    <div className="info">
+                      <span className="text bold">Writer: </span>
+                      {writers.map((item, index) => (
+                        <span className="text" key={index}>
+                          {item.name} {index !== writers.length - 1 && ", "}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+
+                  {data?.created_by?.length > 0 && (
+                    <div className="info">
+                      <span className="text bold">Creator: </span>
+                      {data.created_by.map((item, index) => (
+                        <span className="text" key={index}>
+                          {item.name}{" "}
+                          {index !== data.created_by.length - 1 && ", "}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
               </div>
             </ContentWrapper>

@@ -2,7 +2,7 @@
 
 .detailsBanner {
   width: 100%;
-//   padding-top: 100px;
+  //   padding-top: 100px;
   margin-bottom: 50px;
   //   border: 5px solid blue;
   background-color: var(--black);
@@ -18,34 +18,37 @@
     position: relative;
 
     .backdrop-img {
+      width: 100%;
+      height: 100%;
+
+      // border: 5px solid palevioletred;
+      .lazy-load-image-background {
         width: 100%;
         height: 100%;
-    
-        // border: 5px solid palevioletred;
-        .lazy-load-image-background {
-          width: 100%;
+        opacity: 0.1;
+        img {
           height: 100%;
-          opacity: 0.1;
-          img {
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
-            object-position: center;
-            overflow: hidden;
-          }
+          width: 100%;
+          object-fit: cover;
+          object-position: center;
+          overflow: hidden;
         }
       }
+    }
 
-      .opacity-layer {
-        width: 100%;
-        height: 250px;
-        position: absolute;
-        bottom: 0;
-        border: 5px solid green;
-        background: linear-gradient(180deg, rgba(4, 21, 45, 0) 0%, #04152d 79.17%);
-      }
+    .opacity-layer {
+      width: 100%;
+      height: 250px;
+      position: absolute;
+      bottom: 0;
+    //   border: 5px solid green;
+      background: linear-gradient(
+        180deg,
+        rgba(4, 21, 45, 0) 0%,
+        #04152d 79.17%
+      );
+    }
   }
- 
 
   .content {
     position: absolute;
@@ -161,22 +164,40 @@
       }
 
       .overview {
+        margin-bottom: 25px;
         .heading {
-            font-size: 24px;
-            margin-bottom: 10px;
+          font-size: 24px;
+          margin-bottom: 10px;
         }
         .description {
-            line-height: 24px;
-            @include md {
-                padding-right: 100px;
-            }
+          line-height: 24px;
+          @include md {
+            padding-right: 100px;
+          }
+        }
+      }
+
+      .info {
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        display: flex;
+        padding: 15px 0;
+        .infoItem {
+          margin-right: 10px;
+          display: flex;
+          flex-flow: row wrap;
+        }
+        .text {
+          margin-right: 10px;
+          opacity: 0.5;
+          &.bold {
+            opacity: 1;
+            font-weight: 600;
+          }
         }
       }
     }
   }
 }
-
-
 
 // @import "../../../mixins.scss";
 // .detailsBanner {
