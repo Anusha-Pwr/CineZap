@@ -124,16 +124,13 @@
           right: 0;
           bottom: 0;
           display: none;
+          max-width: calc(100% - 50px);
           @include md {
-            max-width: 115px;
             display: flex;
             flex-wrap: wrap;
             justify-content: end;
             gap: 5px;
             padding: 3px 5px;
-          }
-          @include lg {
-            max-width: 150px;
           }
         }
       }
@@ -145,6 +142,7 @@
         .title {
           font-size: 16px;
           margin-bottom: 7px;
+          @include ellipsis(1);
           @include md {
             font-size: 20px;
           }
