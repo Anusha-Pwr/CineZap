@@ -11,7 +11,7 @@ const Details = () => {
     `/${mediaType}/${id}/credits`
   );
 
-  return <DetailsBanner videos={data?.results?.[0]} crew={credits?.crew} />;
+  return <DetailsBanner video={data?.results?.[0]} crew={credits?.crew} />;
 };
 
 export default Details;

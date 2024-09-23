@@ -1,0 +1,49 @@
+.videoPopup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  visibility: hidden;
+  .opacity-layer {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(3.5px);
+    -webkit-backdrop-filter: blur(3.5px);
+    opacity: 0;
+    transition: opacity 400ms;
+  }
+  .videoPlayer {
+    width: 800px;
+    position: relative;
+    background-color: white;
+    aspect-ratio: 16 / 9;
+    transform: scale(0.2);
+    transition: transform 250ms;
+    .closeButton {
+      position: absolute;
+      right: 0;
+      top: -20px;
+      color: white;
+      cursor: pointer;
+    }
+  }
+
+  &.visible {
+    opacity: 1;
+    visibility: visible;
+    .opacity-layer {
+      opacity: 1;
+    }
+    .videoPlayer {
+      transform: scale(1);
+    }
+  }
+}

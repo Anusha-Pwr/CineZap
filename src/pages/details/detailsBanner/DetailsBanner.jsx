@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import useFetch from "../../../hooks/useFetch";
 import { useParams } from "react-router-dom";
 import Image from "../../../components/lazyLoadImage/Image";
@@ -12,8 +12,9 @@ import "./style.scss";
 import Genres from "../../../components/genres/Genres";
 import CircleRating from "../../../components/circleRating/CircleRating";
 import { PlayIcon } from "../PlayIcon";
+import VideoPopup from "../../../components/videoPopup/VideoPopup";
 
-const DetailsBanner = ({ videos, crew }) => {
+const DetailsBanner = ({ video, crew }) => {
   const { mediaType, id } = useParams();
 
   const { loading, data } = useFetch(`/${mediaType}/${id}`);
@@ -24,12 +25,25 @@ const DetailsBanner = ({ videos, crew }) => {
 
   const directors = crew?.filter((entry) => entry.job === "Director");
 
+  const [showPopup, setShowPopup] = useState();
+  const [videoId, setVideoId] = useState(null);
+
   const writers = crew?.filter(
     (entry) =>
       entry.job === "Screenplay" ||
       entry.job === "Story" ||
       entry.job === "Writer"
   );
+
+  function handleShowVideoPlayer() {
+    setShowPopup(true);
+    setVideoId(video.key);
+  }
+
+  function handleCloseVideoPlayer() {
+    setShowPopup(false);
+    setVideoId(null);
+  }
 
   return (
     <div className="detailsBanner">
@@ -69,7 +83,7 @@ const DetailsBanner = ({ videos, crew }) => {
 
                   <div className="row">
                     <CircleRating rating={data.vote_average.toFixed(1)} />
-                    <div className="playButton">
+                    <div className="playButton" onClick={handleShowVideoPlayer}>
                       <PlayIcon />
                       <span className="text">Watch Trailer</span>
                     </div>
@@ -105,7 +119,7 @@ const DetailsBanner = ({ videos, crew }) => {
                     )}
                   </div>
 
-                  {directors.length > 0 && (
+                  {directors?.length > 0 && (
                     <div className="info">
                       <span className="text bold">Director: </span>
                       {directors.map((item, index) => (
@@ -116,7 +130,7 @@ const DetailsBanner = ({ videos, crew }) => {
                     </div>
                   )}
 
-                  {writers.length > 0 && (
+                  {writers?.length > 0 && (
                     <div className="info">
                       <span className="text bold">Writer: </span>
                       {writers.map((item, index) => (
@@ -140,6 +154,7 @@ const DetailsBanner = ({ videos, crew }) => {
                   )}
                 </div>
               </div>
+              <VideoPopup id={videoId} show={showPopup} onClose={handleCloseVideoPlayer} />
             </ContentWrapper>
             <div style={{ height: "1000px" }}></div>
           </>
