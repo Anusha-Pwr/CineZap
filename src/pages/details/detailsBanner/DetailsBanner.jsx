@@ -5,6 +5,7 @@ import Image from "../../../components/lazyLoadImage/Image";
 import { useSelector } from "react-redux";
 import ContentWrapper from "../../../components/contentWrapper/ContentWrapper";
 import posterFallBack from "../../../assets/no-poster.png";
+import { formatDate } from "../../../utils/dateUtils";
 
 import "./style.scss";
 import Genres from "../../../components/genres/Genres";
@@ -48,7 +49,7 @@ const DetailsBanner = () => {
 
                 <div className="right">
                   <div className="title">
-                    {data.title || data.name} ({data.release_date})
+                    {data.title || data.name} ({formatDate(data.release_date, 'year')})
                   </div>
 
                   <div className="subTitle">{data.tagline}</div>
@@ -78,7 +79,7 @@ const DetailsBanner = () => {
                     {data.release_date && (
                       <div className="infoItem">
                         <span>Release Date: </span>
-                        <span>{data.release_date}</span>
+                        <span>{formatDate(data.release_date, 'short-date')}</span>
                       </div>
                     )}
                     {data.runtime && (
