@@ -74,7 +74,7 @@ const DetailsBanner = ({ video, crew }) => {
                 <div className="right">
                   <div className="title">
                     {data.title || data.name} (
-                    {formatDate(data.release_date, "year")})
+                    {formatDate(data.release_date || data.first_air_date, "year")})
                   </div>
 
                   <div className="subTitle">{data.tagline}</div>
@@ -105,7 +105,7 @@ const DetailsBanner = ({ video, crew }) => {
                       <div className="infoItem">
                         <span className="text bold">Release Date: </span>
                         <span className="text">
-                          {formatDate(data.release_date, "short-date")}
+                          {formatDate(data.release_date || data.first_air_date, "short-date")}
                         </span>
                       </div>
                     )}
@@ -155,8 +155,9 @@ const DetailsBanner = ({ video, crew }) => {
                 </div>
               </div>
               <VideoPopup id={videoId} show={showPopup} onClose={handleCloseVideoPlayer} />
+              {/* <div style={{ height: "1000px", backgroundColor: 'lightblue' }} className="test"></div> */}
             </ContentWrapper>
-            <div style={{ height: "1000px" }}></div>
+            
           </>
         )
       ) : (

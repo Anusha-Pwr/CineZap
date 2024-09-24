@@ -2,6 +2,7 @@ import React from "react";
 import DetailsBanner from "./detailsBanner/DetailsBanner";
 import useFetch from "../../hooks/useFetch";
 import { useParams } from "react-router-dom";
+import "./style.scss";
 
 const Details = () => {
   const { mediaType, id } = useParams();
@@ -11,7 +12,15 @@ const Details = () => {
     `/${mediaType}/${id}/credits`
   );
 
-  return <DetailsBanner video={data?.results?.[0]} crew={credits?.crew} />;
+  return (
+    <div className="details-container">
+      <DetailsBanner video={data?.results?.[0]} crew={credits?.crew} />
+      <div
+        style={{ height: "1000px", backgroundColor: "lightblue" }}
+        className="test"
+      ></div>
+    </div>
+  );
 };
 
 export default Details;
