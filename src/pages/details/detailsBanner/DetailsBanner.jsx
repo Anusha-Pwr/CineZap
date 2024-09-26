@@ -25,7 +25,7 @@ const DetailsBanner = ({ video, crew }) => {
 
   const directors = crew?.filter((entry) => entry.job === "Director");
 
-  const [showPopup, setShowPopup] = useState();
+  const [showPopup, setShowPopup] = useState(false);
   const [videoId, setVideoId] = useState(null);
 
   const writers = crew?.filter(

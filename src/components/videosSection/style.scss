@@ -1,0 +1,87 @@
+@import "../../mixins.scss";
+
+.videosSection {
+  margin-bottom: 50px;
+  .sectionHeading {
+    font-size: 24px;
+    color: white;
+    margin-bottom: 25px;
+  }
+
+  .videos {
+    display: flex;
+    gap: 10px;
+    overflow-y: hidden;
+    overflow-x: auto;
+    @include md {
+      gap: 20px;
+    }
+
+    .videoItem {
+      width: 150px;
+      flex-shrink: 0;
+      cursor: pointer;
+      @include md {
+        width: 25%;
+      }
+
+      .videoThumbnail {
+        position: relative;
+        margin-bottom: 15px;
+        img {
+          width: 100%;
+          border-radius: 12px;
+          transition: all 0.7s ease-in-out;
+        }
+
+        svg {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 50px;
+          height: 50px;
+          transform: translate(-50%, -50%);
+        }
+
+        .triangle {
+          stroke-dasharray: 240;
+          stroke-dashoffset: 480;
+          stroke: white;
+          transform: translateY(0);
+          transition: all 0.7s ease-in-out;
+        }
+        .circle {
+          stroke: white;
+          stroke-dasharray: 650;
+          stroke-dashoffset: 1300;
+          transition: all 0.5s ease-in-out;
+        }
+        &:hover {
+          img {
+            opacity: 0.5;
+          }
+          .triangle {
+            stroke-dashoffset: 0;
+            opacity: 1;
+            stroke: var(--pink);
+            animation: trailorPlay 0.7s ease-in-out;
+          }
+          .circle {
+            stroke-dashoffset: 0;
+            stroke: var(--pink);
+          }
+        }
+      }
+
+      .videoTitle {
+        font-size: 14px;
+        color: white;
+        line-height: 20px;
+        @include md {
+          font-size: 16px;
+          line-height: 24px;
+        }
+      }
+    }
+  }
+}
