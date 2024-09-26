@@ -3,11 +3,14 @@ import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import { Outlet } from "react-router-dom";
 
+
 const AppLayout = () => {
   return (
     <>
-      <Header />
-      <Outlet />
+      <main style={{minHeight: "100vh"}}>
+        <Header />
+        <Outlet />
+      </main>
       <Footer />
     </>
   );
