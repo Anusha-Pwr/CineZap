@@ -84,4 +84,42 @@
       }
     }
   }
+
+  .videosSkeleton {
+    display: flex;
+    gap: 10px;
+    overflow-y: hidden;
+    overflow-x: auto;
+    @include md {
+      gap: 20px;
+    }
+
+    .skeletonItem {
+      width: 150px;
+      flex-shrink: 0;
+      @include md {
+        width: 25%;
+      }
+
+      .thumbnail {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border-radius: 12px;
+        margin-bottom: 10px;
+      }
+
+      .row {
+        height: 20px;
+        width: 100%;
+        border-radius: 10px;
+        margin-bottom: 10px;
+      }
+
+      .row2 {
+        height: 20px;
+        width: 75%;
+        border-radius: 10px;
+      }
+    }
+  }
 }

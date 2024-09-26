@@ -20,6 +20,16 @@ const VideosSection = ({ data, loading }) => {
     setVideoId(null);
   }
 
+  function loadingSkeleton() {
+    return (
+      <div className="skeletonItem">
+        <div className="thumbnail skeleton"></div>
+        <div className="row skeleton"></div>
+        <div className="row2 skeleton"></div>
+      </div>
+    );
+  }
+
   return (
     <div className="videosSection">
       <ContentWrapper>
@@ -43,7 +53,12 @@ const VideosSection = ({ data, loading }) => {
             ))}
           </div>
         ) : (
-          <div className="vidoesSkeleton"></div>
+          <div className="videosSkeleton">
+            {loadingSkeleton()}
+            {loadingSkeleton()}
+            {loadingSkeleton()}
+            {loadingSkeleton()}
+          </div>
         )}
       </ContentWrapper>
       <VideoPopup
