@@ -16,7 +16,7 @@ import Genres from "../genres/Genres";
 import { useNavigate } from "react-router-dom";
 import { formatDate } from "../../utils/dateUtils";
 
-const Carousel = ({ data, loading, endPoint }) => {
+const Carousel = ({ data, loading, endPoint, title }) => {
   const url = useSelector((state) => state.home.url);
   const navigate = useNavigate();
 
@@ -55,6 +55,7 @@ const Carousel = ({ data, loading, endPoint }) => {
   return (
     <div className="carousel">
       <ContentWrapper>
+        {title && <div className="carouselTitle">{title}</div>}
         <BsFillArrowLeftCircleFill
           className="carouselLeftNav arrow"
           onClick={() => scrollHandler("left")}

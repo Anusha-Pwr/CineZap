@@ -26,12 +26,12 @@ const Cast = ({ data, loading }) => {
         <div className="sectionHeading">Top Cast</div>
         {!loading ? (
           <div className="listItems">
-            {data?.map((entry) => {
+            {data?.map((entry, index) => {
               let imgUrl = entry.profile_path
                 ? url.profile + entry.profile_path
                 : posterFallBack;
               return (
-                <div className="listItem">
+                <div className="listItem" key={index}>
                   <div className="profileImg">
                     <Image src={imgUrl} alt="" />
                   </div>
