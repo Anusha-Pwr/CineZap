@@ -74,10 +74,12 @@ const DetailsBanner = ({ video, crew }) => {
                 <div className="right">
                   <div className="title">
                     {data.title || data.name} (
-                    {formatDate(
-                      data.release_date || data.first_air_date,
-                      "year"
-                    )}
+                    {data.release_date === "" || data.first_air_date === ""
+                      ? "Date Unavailable"
+                      : formatDate(
+                          data.release_date || data.first_air_date,
+                          "year"
+                        )}
                     )
                   </div>
 
@@ -99,24 +101,29 @@ const DetailsBanner = ({ video, crew }) => {
                   </div>
 
                   <div className="info">
-                    {data.status && (
+                    {data?.status && (
                       <div className="infoItem">
                         <span className="text bold">Status: </span>
                         <span className="text">{data.status}</span>
                       </div>
                     )}
-                    {data.release_date && (
+
+                    {(data.hasOwnProperty('release_date') || data.hasOwnProperty('first_air_date')) && (
                       <div className="infoItem">
                         <span className="text bold">Release Date: </span>
                         <span className="text">
-                          {formatDate(
-                            data.release_date || data.first_air_date,
-                            "short-date"
-                          )}
+                          {data.release_date === "" ||
+                          data.first_air_date === ""
+                            ? "Date Unavailable"
+                            : formatDate(
+                                data.release_date || data.first_air_date,
+                                "year"
+                              )}
                         </span>
                       </div>
                     )}
-                    {data.runtime && (
+
+                    {data.hasOwnProperty('runtime') && (
                       <div className="infoItem">
                         <span className="text bold">Runtime: </span>
                         <span className="text">
