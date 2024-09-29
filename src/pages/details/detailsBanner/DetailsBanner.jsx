@@ -21,7 +21,7 @@ const DetailsBanner = ({ video, crew }) => {
 
   const url = useSelector((state) => state.home.url);
 
-  const genres = data?.genres.map((entry) => entry.id);
+  const genres = data?.genres?.map((entry) => entry.id);
 
   const directors = crew?.filter((entry) => entry.job === "Director");
 
@@ -88,7 +88,7 @@ const DetailsBanner = ({ video, crew }) => {
                   <Genres data={genres} />
 
                   <div className="row">
-                    <CircleRating rating={data.vote_average.toFixed(1)} />
+                    <CircleRating rating={data?.vote_average?.toFixed(1)} />
                     <div className="playButton" onClick={handleShowVideoPlayer}>
                       <PlayIcon />
                       <span className="text">Watch Trailer</span>
@@ -117,7 +117,7 @@ const DetailsBanner = ({ video, crew }) => {
                             ? "Date Unavailable"
                             : formatDate(
                                 data.release_date || data.first_air_date,
-                                "year"
+                                "short-date"
                               )}
                         </span>
                       </div>

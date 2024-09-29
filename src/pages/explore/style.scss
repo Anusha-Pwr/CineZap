@@ -6,6 +6,7 @@
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+    margin-bottom: 25px;
     @include md {
       flex-direction: row;
     }
@@ -47,6 +48,7 @@
           box-shadow: none;
           background-color: var(--black-light);
           border-radius: 20px;
+          line-height: 1.5;
 
           .react-select__value-container {
             .react-select__placeholder,
@@ -54,6 +56,10 @@
               color: white;
               margin: 0 10px;
             }
+          }
+
+          .react-select__single-value {
+            color: white;
           }
 
           .react-select__multi-value {
@@ -74,5 +80,21 @@
         }
       }
     }
+  }
+
+  .content {
+    display: flex;
+    flex-flow: row wrap;
+    margin-bottom: 50px;
+    gap: 10px;
+    justify-content: center;
+    @include md {
+        gap: 20px;
+    }
+  }
+
+  .fallbackText {
+    font-size: 24px;
+    color: var(--black-light);
   }
 }

@@ -2,6 +2,7 @@ const BASE_URL = "https://api.themoviedb.org/3";
 const API_KEY = import.meta.env.VITE_APP_TMDB_API_KEY;
 
 export async function fetchDataFromApi(url, params) {
+  console.log(params);
   const queryParams = new URLSearchParams({
     api_key: API_KEY,
     ...params,

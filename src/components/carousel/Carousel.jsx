@@ -88,7 +88,12 @@ const Carousel = ({ data, loading, endPoint, title }) => {
                   <div className="textBlock">
                     <span className="title">{item.title || item.name}</span>
                     <span className="date">
-                      {formatDate(date, "short-date")}
+                      {item?.release_date === "" || item?.first_air_date === ""
+                        ? "Date Unavailable"
+                        : formatDate(
+                            item?.release_date || item?.first_air_date,
+                            "short-date"
+                          )}
                     </span>
                   </div>
                 </div>

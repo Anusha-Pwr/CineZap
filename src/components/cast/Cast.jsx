@@ -4,7 +4,7 @@ import "./style.scss";
 
 import ContentWrapper from "../contentWrapper/ContentWrapper";
 import { useSelector } from "react-redux";
-import posterFallBack from "../../assets/no-poster.png";
+import profileFallBack from "../../assets/avatar.png";
 import Image from "../lazyLoadImage/Image";
 
 const Cast = ({ data, loading }) => {
@@ -29,7 +29,7 @@ const Cast = ({ data, loading }) => {
             {data?.map((entry, index) => {
               let imgUrl = entry.profile_path
                 ? url.profile + entry.profile_path
-                : posterFallBack;
+                : profileFallBack;
               return (
                 <div className="listItem" key={index}>
                   <div className="profileImg">
