@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, ScrollRestoration } from "react-router-dom";
 import AppLayout from "./layout/AppLayout";
 import Home from "./pages/home/Home";
 import Details from "./pages/details/Details";
@@ -8,6 +8,7 @@ import Explore from "./pages/explore/Explore";
 import { fetchDataFromApi } from "./utils/api";
 import { useDispatch } from "react-redux";
 import { homeActions } from "./store/homeSlice";
+
 
 function App() {
   const dispatch = useDispatch();

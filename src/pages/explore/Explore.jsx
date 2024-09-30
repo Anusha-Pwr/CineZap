@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Select from "react-select";
+import { ScrollRestoration } from "react-router-dom";
 
 import "./style.scss";
 import { useParams } from "react-router-dom";
@@ -31,6 +32,8 @@ const Explore = () => {
 
   const [reset, setReset] = useState(false);
 
+  const [resetOnBack, setResetOnBack] = useState(false);
+
   const { data: genreData } = useFetch(`/genre/${mediaType}/list`);
 
   async function fetchInitialData() {
@@ -59,6 +62,35 @@ const Explore = () => {
 
     setPage((prev) => prev + 1);
   }
+
+  // useEffect(() => {
+  //   console.log(location.state);
+  //   if (location.state?.filters) {
+  //     console.log("filters present");
+  //     setFilters(location.state.filters);
+  //     setData(location.state.exploreData);
+  //     setGenre(location.state.genre);
+  //     setSortBy(location.state.sortBy);
+  //     setPage(location.state.page);
+  //   } else {
+  //     console.log("filters absent");
+  //     console.log(filters);
+  //     setFilters({});
+  //     setData(null);
+  //     setGenre(null);
+  //     setSortBy(null);
+  //     setPage(1);
+  //   }
+
+  //   setResetOnBack(true);
+  // }, [location.state]);
+
+  // useEffect(() => {
+  //   if(resetOnBack) {
+  //     fetchInitialData();
+  //     setResetOnBack(false);
+  //   }
+  // }, [resetOnBack]);
 
   useEffect(() => {
     // useEffect to reset all states when mediaType changes
@@ -131,6 +163,8 @@ const Explore = () => {
   console.log(filters);
 
   return (
+    <>
+    <ScrollRestoration />
     <div className="explorePage">
       <ContentWrapper>
         <div className="pageHeader">
@@ -180,7 +214,16 @@ const Explore = () => {
                 {data?.results?.map((item, index) => {
                   if (item?.media_type === "person") return;
                   return (
-                    <MovieCard key={index} data={item} mediaType={mediaType} />
+                    <MovieCard
+                      key={index}
+                      data={item}
+                      mediaType={mediaType}
+                      filters={filters}
+                      exploreData={data}
+                      genre={genre}
+                      sortBy={sortBy}
+                      page={page}
+                    />
                   );
                 })}
               </InfiniteScroll>
@@ -191,6 +234,7 @@ const Explore = () => {
         )}
       </ContentWrapper>
     </div>
+    </>
   );
 };
 

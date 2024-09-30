@@ -56,50 +56,62 @@ const Carousel = ({ data, loading, endPoint, title }) => {
     <div className="carousel">
       <ContentWrapper>
         {title && <div className="carouselTitle">{title}</div>}
-        <BsFillArrowLeftCircleFill
-          className="carouselLeftNav arrow"
-          onClick={() => scrollHandler("left")}
-        />
-        <BsFillArrowRightCircleFill
-          className="carouselRightNav arrow"
-          onClick={() => scrollHandler("right")}
-        />
+
+        {!loading && data?.length > 0 && (
+          <>
+            <BsFillArrowLeftCircleFill
+              className="carouselLeftNav arrow"
+              onClick={() => scrollHandler("left")}
+            />
+            <BsFillArrowRightCircleFill
+              className="carouselRightNav arrow"
+              onClick={() => scrollHandler("right")}
+            />
+          </>
+        )}
 
         {!loading ? (
-          <div className="carouselItems" ref={carouselRef}>
-            {data?.map((item) => {
-              const posterUrl = item.poster_path
-                ? url.poster + item.poster_path
-                : posterFallBack;
+          data?.length > 0 ? (
+            <div className="carouselItems" ref={carouselRef}>
+              {data?.map((item) => {
+                const posterUrl = item.poster_path
+                  ? url.poster + item.poster_path
+                  : posterFallBack;
 
-              const date = new Date(item.release_date ?? item.first_air_date);
+                const date = new Date(item.release_date ?? item.first_air_date);
 
-              return (
-                <div
-                  key={item.id}
-                  className="carouselItem"
-                  onClick={() => navigationHandler(item)}
-                >
-                  <div className="posterBlock">
-                    <Image src={posterUrl} />
-                    <CircleRating rating={item.vote_average.toFixed(1)} />
-                    <Genres data={item.genre_ids.slice(0, 2)} />
+                return (
+                  <div
+                    key={item.id}
+                    className="carouselItem"
+                    onClick={() => navigationHandler(item)}
+                  >
+                    <div className="posterBlock">
+                      <Image src={posterUrl} />
+                      <CircleRating rating={item.vote_average.toFixed(1)} />
+                      <Genres data={item.genre_ids.slice(0, 2)} />
+                    </div>
+                    <div className="textBlock">
+                      <span className="title">{item.title || item.name}</span>
+                      <span className="date">
+                        {item?.release_date === "" ||
+                        item?.first_air_date === ""
+                          ? "Date Unavailable"
+                          : formatDate(
+                              item?.release_date || item?.first_air_date,
+                              "short-date"
+                            )}
+                      </span>
+                    </div>
                   </div>
-                  <div className="textBlock">
-                    <span className="title">{item.title || item.name}</span>
-                    <span className="date">
-                      {item?.release_date === "" || item?.first_air_date === ""
-                        ? "Date Unavailable"
-                        : formatDate(
-                            item?.release_date || item?.first_air_date,
-                            "short-date"
-                          )}
-                    </span>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+                );
+              })}
+            </div>
+          ) : (
+            <span className="fallbackText">
+              No {title} information available
+            </span>
+          )
         ) : (
           <div className="loadingSkeleton">
             {skeletonItemHandler()}

@@ -25,22 +25,26 @@ const Cast = ({ data, loading }) => {
       <ContentWrapper>
         <div className="sectionHeading">Top Cast</div>
         {!loading ? (
-          <div className="listItems">
-            {data?.map((entry, index) => {
-              let imgUrl = entry.profile_path
-                ? url.profile + entry.profile_path
-                : profileFallBack;
-              return (
-                <div className="listItem" key={index}>
-                  <div className="profileImg">
-                    <Image src={imgUrl} alt="" />
+          data?.length > 0 ? (
+            <div className="listItems">
+              {data?.map((entry, index) => {
+                let imgUrl = entry.profile_path
+                  ? url.profile + entry.profile_path
+                  : profileFallBack;
+                return (
+                  <div className="listItem" key={index}>
+                    <div className="profileImg">
+                      <Image src={imgUrl} alt="" />
+                    </div>
+                    <div className="name">{entry.name}</div>
+                    <div className="character">{entry.character}</div>
                   </div>
-                  <div className="name">{entry.name}</div>
-                  <div className="character">{entry.character}</div>
-                </div>
-              );
-            })}
-          </div>
+                );
+              })}
+            </div>
+          ) : (
+            <span className="fallbackText">No cast informaton available</span>
+          )
         ) : (
           <div className="castSkeleton">
             {skeleton()}

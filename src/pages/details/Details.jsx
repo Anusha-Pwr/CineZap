@@ -8,6 +8,8 @@ import VideosSection from "../../components/videosSection/VideosSection";
 import Similar from "../../components/carouselSections/Similar";
 import Recommendations from "../../components/carouselSections/Recommendations";
 
+import { useLocation } from "react-router-dom";
+
 const Details = () => {
   const { mediaType, id } = useParams();
 
@@ -15,6 +17,10 @@ const Details = () => {
   const { data: credits, loading: creditsLoading } = useFetch(
     `/${mediaType}/${id}/credits`
   );
+
+  const location = useLocation();
+
+  console.log(location.state);
 
   return (
     <div className="details-container">

@@ -1,7 +1,9 @@
 .carouselSection {
-   & > .contentWrapper {
+  margin-bottom: 70px;
+  & > .contentWrapper {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 20px;
   }
 
   .carouselTitle {

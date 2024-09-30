@@ -1,7 +1,6 @@
 @import "../../mixins.scss";
 
 .carousel {
-  padding: 20px 0;
   margin-bottom: 50px;
   overflow: hidden;
 
@@ -15,7 +14,7 @@
   .contentWrapper {
     position: relative;
   }
-  
+
   .arrow {
     font-size: 30px;
     color: darkgray;
@@ -162,5 +161,10 @@
         }
       }
     }
+  }
+
+  .fallbackText {
+    font-size: 24px;
+    color: var(--black-light);
   }
 }

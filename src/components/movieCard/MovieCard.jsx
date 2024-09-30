@@ -9,7 +9,7 @@ import { useSelector } from "react-redux";
 import posterFallBack from "../../assets/no-poster.png";
 import { useNavigate } from "react-router-dom";
 
-const MovieCard = ({ data, mediaType }) => {
+const MovieCard = ({ data, mediaType, filters, exploreData, genre, sortBy, page }) => {
   const url = useSelector((state) => state.home.url);
 
   const posterUrl = data?.poster_path
@@ -19,8 +19,10 @@ const MovieCard = ({ data, mediaType }) => {
   const navigate = useNavigate();
 
   function navigationHandler() {
-    console.log(data?.media_type);
-    navigate(`/${data?.media_type || mediaType}/${data?.id}`);
+    console.log(filters);
+    navigate(`/${data?.media_type || mediaType}/${data?.id}`, {
+      state: {filters, exploreData, genre, sortBy, page}
+    });
   }
 
   return (
