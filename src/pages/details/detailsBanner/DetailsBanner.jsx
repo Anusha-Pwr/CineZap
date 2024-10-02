@@ -52,7 +52,7 @@ const DetailsBanner = ({ video, crew }) => {
           <>
             <div className="backdrop-container">
               <div className="backdrop-img">
-                <Image src={url.backdrop + data.backdrop_path} />
+                <Image src={url.backdrop + data.backdrop_path} alt="Backdrop image" />
               </div>
               <div className="opacity-layer"></div>
             </div>
@@ -63,11 +63,11 @@ const DetailsBanner = ({ video, crew }) => {
                   {data.poster_path ? (
                     <Image
                       src={url.poster + data.poster_path}
-                      alt=""
+                      alt="Poster image"
                       className="posterImg"
                     />
                   ) : (
-                    <Image src={posterFallBack} alt="" className="posterImg" />
+                    <Image src={posterFallBack} alt="Dummy poster image" className="posterImg" />
                   )}
                 </div>
 

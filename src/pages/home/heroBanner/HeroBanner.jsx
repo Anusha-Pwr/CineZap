@@ -33,7 +33,7 @@ const HeroBanner = () => {
     <div className="heroBanner">
       {data && !loading && (
         <div className="backdrop-img">
-          <Image src={background} />
+          <Image src={background} alt="Backdrop image of a movie" />
         </div>
       )}
 

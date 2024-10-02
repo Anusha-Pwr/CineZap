@@ -87,7 +87,7 @@ const Carousel = ({ data, loading, endPoint, title }) => {
                     onClick={() => navigationHandler(item)}
                   >
                     <div className="posterBlock">
-                      <Image src={posterUrl} />
+                      <Image src={posterUrl} alt="Poster image" />
                       <CircleRating rating={item.vote_average.toFixed(1)} />
                       <Genres data={item.genre_ids.slice(0, 2)} />
                     </div>
