@@ -32,8 +32,12 @@
     }
   }
 
-  .fallbackText {
-    font-size: 24px;
-    color: var(--black-light);
+  .fallbackContainer {
+    display: flex;
+    flex-direction: column;
+    .fallbackText {
+      font-size: 24px;
+      color: var(--black-light);
+    }
   }
 }

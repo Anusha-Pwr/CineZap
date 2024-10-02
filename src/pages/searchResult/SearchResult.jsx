@@ -5,6 +5,7 @@ import Spinner from "../../components/spinner/Spinner";
 import ContentWrapper from "../../components/contentWrapper/ContentWrapper";
 
 import "./style.scss";
+import noResults from "../../assets/no-results.png";
 import InfiniteScroll from "react-infinite-scroll-component";
 import MovieCard from "../../components/movieCard/MovieCard";
 
@@ -80,9 +81,12 @@ const SearchResult = () => {
               </InfiniteScroll>
             </>
           ) : (
-            <span className="fallbackText">
-              Sorry, no results found for this search.
-            </span>
+            <div className="fallbackContainer">
+              <span className="fallbackText">
+                Sorry, no results found for this search.
+              </span>
+              <img src={noResults} alt="Blank page depicting no results" />
+            </div>
           )}
         </ContentWrapper>
       )}
