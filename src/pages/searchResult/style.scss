@@ -21,6 +21,15 @@
     @include md {
       gap: 20px;
     }
+    .movieCard {
+      width: calc(33.33% - 10px);
+      @include md {
+        width: calc(25% - 15px);
+      }
+      @include lg {
+        width: calc(20% - 16px);
+      }
+    }
   }
 
   .fallbackText {
