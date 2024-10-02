@@ -1,14 +1,19 @@
 import { useEffect } from "react";
-import { createBrowserRouter, RouterProvider, ScrollRestoration } from "react-router-dom";
+import {
+  createBrowserRouter,
+  RouterProvider,
+  ScrollRestoration,
+} from "react-router-dom";
 import AppLayout from "./layout/AppLayout";
 import Home from "./pages/home/Home";
 import Details from "./pages/details/Details";
 import SearchResult from "./pages/searchResult/SearchResult";
 import Explore from "./pages/explore/Explore";
+import PageNotFound from "./pages/404/PageNotFound";
+
 import { fetchDataFromApi } from "./utils/api";
 import { useDispatch } from "react-redux";
 import { homeActions } from "./store/homeSlice";
-
 
 function App() {
   const dispatch = useDispatch();
@@ -71,6 +76,10 @@ function App() {
         {
           element: <Explore />,
           path: "/explore/:mediaType",
+        },
+        {
+          element: <PageNotFound />,
+          path: "*",
         },
       ],
     },
