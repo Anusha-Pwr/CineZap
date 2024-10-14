@@ -199,6 +199,7 @@
           margin-right: 10px;
           display: flex;
           flex-flow: row wrap;
+          row-gap: 3px;
         }
         .text {
           margin-right: 10px;
@@ -207,6 +208,14 @@
             opacity: 1;
             font-weight: 600;
           }
+        }
+      }
+
+      .info {
+        .infoValues {
+          display: flex;
+          row-gap: 3px;
+          flex-flow: row wrap;
         }
       }
     }
@@ -297,6 +306,331 @@
     }
   }
 }
+
+
+
+
+
+// @import "../../../mixins.scss";
+
+// .detailsBanner {
+//   width: 100%;
+//   margin-bottom: 50px;
+//   background-color: var(--black);
+//   @include md {
+//     min-height: 700px;
+//   }
+
+//   .backdrop-container {
+//     width: 100%;
+//     height: 100%;
+//     position: absolute;
+//     top: 0;
+//     left: 0;
+
+//     .backdrop-img {
+//       width: 100%;
+//       height: 100%;
+
+//       .lazy-load-image-background {
+//         width: 100%;
+//         height: 100%;
+//         opacity: 0.2;
+//         @include md {
+//           opacity: 0.1;
+//         }
+//         img {
+//           height: 100%;
+//           width: 100%;
+//           object-fit: cover;
+//           object-position: center;
+//           overflow: hidden;
+//         }
+//       }
+//     }
+
+//     .opacity-layer {
+//       width: 100%;
+//       height: 250px;
+//       position: absolute;
+//       bottom: 0;
+//       background: linear-gradient(
+//         180deg,
+//         rgba(4, 21, 45, 0) 0%,
+//         #04152d 79.17%
+//       );
+//     }
+//   }
+
+//   .content {
+//     position: relative;
+//     display: flex;
+//     flex-direction: column;
+//     gap: 25px;
+//     padding: 80px 20px 0;
+//     @include md {
+//       padding-top: 100px;
+//       padding-left: 0;
+//       padding-right: 0;
+//     }
+
+//     @include lg {
+//       flex-direction: row;
+//       gap: 50px;
+//     }
+
+//     .left {
+//       flex-shrink: 0;
+//       @include lg {
+//         display: flex;
+//         align-items: center;
+//         justify-content: center;
+//       }
+
+//       .posterImg {
+//         width: 100%;
+//         height: 100%;
+//         border-radius: 12px;
+//         object-fit: cover;
+
+//         @include md {
+//           max-width: 350px;
+//           height: auto;
+//         }
+//       }
+//     }
+//     .right {
+//       color: white;
+//       flex: 1;
+//       .title {
+//         font-size: 24px;
+//         line-height: 32px;
+//         @include md {
+//           font-size: 34px;
+//           line-height: 44px;
+//         }
+//       }
+//       .subTitle {
+//         font-size: 16px;
+//         line-height: 24px;
+//         margin-bottom: 15px;
+//         font-style: italic;
+//         opacity: 0.5;
+//         @include md {
+//           font-size: 20px;
+//           line-height: 28px;
+//         }
+//       }
+//       .genres {
+//         display: flex;
+//         flex-wrap: wrap;
+//         gap: 5px;
+//         margin-bottom: 15px;
+//         @include md {
+//           margin-bottom: 25px;
+//         }
+//       }
+
+//       .row {
+//         display: flex;
+//         align-items: center;
+//         gap: 25px;
+//         margin-bottom: 25px;
+
+//         .circleRating {
+//           max-width: 70px;
+//           background-color: var(--black2);
+//           overflow: hidden;
+//           border-radius: 50%;
+//           padding: 4px;
+//           @include md {
+//             max-width: 90px;
+//           }
+//           .CircularProgressbar-text {
+//             fill: white;
+//           }
+//         }
+
+//         .playButton {
+//           display: flex;
+//           gap: 20px;
+//           align-items: center;
+//           cursor: pointer;
+//           svg {
+//             width: 50px;
+//             @include md {
+//               width: 60px;
+//             }
+//           }
+//           .text {
+//             font-size: 16px;
+//             @include md {
+//               font-size: 20px;
+//             }
+//             transition: all 0.7s ease-in-out;
+//           }
+//           .triangle {
+//             stroke-dasharray: 240;
+//             stroke-dashoffset: 480;
+//             stroke: white;
+//             transform: translateY(0);
+//             transition: all 0.7s ease-in-out;
+//           }
+//           .circle {
+//             stroke: white;
+//             stroke-dasharray: 650;
+//             stroke-dashoffset: 1300;
+//             transition: all 0.5s ease-in-out;
+//           }
+//           &:hover {
+//             .text {
+//               color: var(--pink);
+//             }
+//             .triangle {
+//               stroke-dashoffset: 0;
+//               opacity: 1;
+//               stroke: var(--pink);
+//               animation: trailorPlay 0.7s ease-in-out;
+//             }
+//             .circle {
+//               stroke-dashoffset: 0;
+//               stroke: var(--pink);
+//             }
+//           }
+//         }
+//       }
+
+//       .overview {
+//         margin-bottom: 25px;
+//         .heading {
+//           font-size: 24px;
+//           margin-bottom: 10px;
+//         }
+//         .description {
+//           font-size: 14px;
+//           line-height: 22px;
+//           @include md {
+//             font-size: 16px;
+//             line-height: 24px;
+//             padding-right: 50px;
+//           }
+//         }
+//       }
+
+//       .info {
+//         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+//         display: flex;
+//         flex-direction: column;
+//         padding: 15px 0;
+//         @include md {
+//           flex-direction: row;
+//         }
+//         .infoItem {
+//           margin-right: 10px;
+//           display: flex;
+//           flex-flow: row wrap;
+//           margin-bottom: 10px;
+//           @include md {
+//             margin-bottom: 0;
+//           }
+//         }
+//         .text {
+//           margin-right: 10px;
+//           opacity: 0.5;
+//           &.bold {
+//             opacity: 1;
+//             font-weight: 600;
+//           }
+//         }
+//       }
+//     }
+//   }
+
+//   .detailsBannerSkeleton {
+//     position: relative;
+//     display: flex;
+//     flex-direction: column;
+//     gap: 25px;
+//     padding: 100px 0 100px 0;
+//     @include md {
+//       gap: 50px;
+//       flex-direction: row;
+//     }
+
+//     .left {
+//       flex-shrink: 0;
+//       width: 100%;
+//       display: block;
+//       border-radius: 12px;
+//       aspect-ratio: 1/1.5;
+//       @include md {
+//         max-width: 350px;
+//       }
+//     }
+
+//     .right {
+//       width: 100%;
+//       .row {
+//         width: 100%;
+//         height: 25px;
+//         margin-bottom: 20px;
+//         border-radius: 50px;
+//         &:nth-child(2) {
+//           width: 75%;
+//           margin-bottom: 50px;
+//         }
+//         &:nth-child(4) {
+//           width: 100%;
+//           height: 50px;
+//         }
+//         &:nth-child(5) {
+//           width: 50%;
+//           margin-bottom: 50px;
+//         }
+//       }
+//     }
+//   }
+// }
+
+// .detailsBannerSkeleton {
+//   position: relative;
+//   display: flex;
+//   flex-direction: column;
+//   gap: 25px;
+//   @include md {
+//     gap: 50px;
+//     flex-direction: row;
+//   }
+
+//   .left {
+//     flex-shrink: 0;
+//     width: 100%;
+//     display: block;
+//     border-radius: 12px;
+//     aspect-ratio: 1/1.5;
+//     @include md {
+//       max-width: 350px;
+//     }
+//   }
+
+//   .right {
+//     width: 100%;
+//     .row {
+//       width: 100%;
+//       height: 25px;
+//       margin-bottom: 40px;
+//       border-radius: 50px;
+//       &:nth-child(2) {
+//         width: 75%;
+//         margin-bottom: 50px;
+//       }
+//       &:nth-child(5) {
+//         width: 50%;
+//         margin-bottom: 50px;
+//       }
+//     }
+//   }
+// }
 
 //   .test {
 //     position: relative;

@@ -52,7 +52,10 @@ const DetailsBanner = ({ video, crew }) => {
           <>
             <div className="backdrop-container">
               <div className="backdrop-img">
-                <Image src={url.backdrop + data.backdrop_path} alt="Backdrop image" />
+                <Image
+                  src={url.backdrop + data.backdrop_path}
+                  alt="Backdrop image"
+                />
               </div>
               <div className="opacity-layer"></div>
             </div>
@@ -67,7 +70,11 @@ const DetailsBanner = ({ video, crew }) => {
                       className="posterImg"
                     />
                   ) : (
-                    <Image src={posterFallBack} alt="Dummy poster image" className="posterImg" />
+                    <Image
+                      src={posterFallBack}
+                      alt="Dummy poster image"
+                      className="posterImg"
+                    />
                   )}
                 </div>
 
@@ -108,7 +115,8 @@ const DetailsBanner = ({ video, crew }) => {
                       </div>
                     )}
 
-                    {(data.hasOwnProperty('release_date') || data.hasOwnProperty('first_air_date')) && (
+                    {(data.hasOwnProperty("release_date") ||
+                      data.hasOwnProperty("first_air_date")) && (
                       <div className="infoItem">
                         <span className="text bold">Release Date: </span>
                         <span className="text">
@@ -123,7 +131,7 @@ const DetailsBanner = ({ video, crew }) => {
                       </div>
                     )}
 
-                    {data.hasOwnProperty('runtime') && (
+                    {data.hasOwnProperty("runtime") && (
                       <div className="infoItem">
                         <span className="text bold">Runtime: </span>
                         <span className="text">
@@ -136,34 +144,40 @@ const DetailsBanner = ({ video, crew }) => {
                   {directors?.length > 0 && (
                     <div className="info">
                       <span className="text bold">Director: </span>
-                      {directors.map((item, index) => (
-                        <span className="text" key={index}>
-                          {item.name} {index !== directors.length - 1 && ", "}
-                        </span>
-                      ))}
+                      <div className="infoValues">
+                        {directors.map((item, index) => (
+                          <span className="text" key={index}>
+                            {item.name} {index !== directors.length - 1 && ", "}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   )}
 
                   {writers?.length > 0 && (
                     <div className="info">
                       <span className="text bold">Writer: </span>
-                      {writers.map((item, index) => (
-                        <span className="text" key={index}>
-                          {item.name} {index !== writers.length - 1 && ", "}
-                        </span>
-                      ))}
+                      <div className="infoValues">
+                        {writers.map((item, index) => (
+                          <span className="text" key={index}>
+                            {item.name} {index !== writers.length - 1 && ","}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   )}
 
                   {data?.created_by?.length > 0 && (
                     <div className="info">
                       <span className="text bold">Creator: </span>
-                      {data.created_by.map((item, index) => (
-                        <span className="text" key={index}>
-                          {item.name}{" "}
-                          {index !== data.created_by.length - 1 && ", "}
-                        </span>
-                      ))}
+                      <div className="infoValues">
+                        {data.created_by.map((item, index) => (
+                          <span className="text" key={index}>
+                            {item.name}{" "}
+                            {index !== data.created_by.length - 1 && ","}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   )}
                 </div>
