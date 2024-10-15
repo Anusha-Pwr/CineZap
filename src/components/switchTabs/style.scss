@@ -9,7 +9,7 @@
     height: 30px;
     position: relative;
     .tabItem {
-      width: 100px;
+      width: 100px; // for larger screens
       display: flex;
       justify-content: center;
       color: var(--black);
@@ -25,12 +25,30 @@
 
     .movingBg {
       height: 30px;
-      width: 100px;
+      width: 100px; // for larger screens
       border-radius: 15px;
       background: var(--gradient);
       position: absolute;
       left: 0;
       transition: left cubic-bezier(0.88, -0.35, 0.565, 1.35) 0.4s;
+    }
+  }
+
+  @media (max-width: 640px) {
+    height: 26px; // reduce the height
+    .tabItems {
+      height: 22px;
+
+      .tabItem {
+        width: 80px; // make tabs narrower for small screens
+        font-size: 12px; // smaller font size
+      }
+
+      .movingBg {
+        height: 22px; // reduce the height
+        width: 80px; // match the tab width
+        transition: left cubic-bezier(0.88, -0.35, 0.565, 1.35) 0.4s;
+      }
     }
   }
 }

@@ -1,17 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./style.scss";
 
 const SwitchTabs = ({ data, onTabChange }) => {
   const [selectedTab, setSelectedTab] = useState(0);
   const [left, setLeft] = useState(0);
 
+  const updateLeftPosition = (index) => {
+    const tabWidth = document.querySelector(".tabItem").offsetWidth;
+    setLeft(index * tabWidth);
+  };
+
   function activeTabHandler(tab, index) {
-    setLeft(index * 100);  // set the 'left' of movingBg 
+    updateLeftPosition(index);
     setTimeout(() => {
-      setSelectedTab(index); // set selected tab so as to change the color of tabItem
+      setSelectedTab(index);
     }, 300);
     onTabChange(tab);
   }
+
+  // Handle window resize
+  useEffect(() => {
+    const handleResize = () => {
+      updateLeftPosition(selectedTab); // Recalculate when window is resized
+    };
+
+    window.addEventListener("resize", handleResize);
+    
+    // Cleanup the event listener on component unmount
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [selectedTab]); // Recalculate when the selectedTab changes
 
   return (
     <div className="switchingTabs">

@@ -4,11 +4,16 @@
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
+    align-items: center;
   }
 
   .carouselTitle {
     color: white;
     font-size: 24px;
     font-weight: normal;
+
+    @media (max-width: 640px) {
+      font-size: 18px;
+    }
   }
 }
